@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "retiform": {
+      "type": "http",
+      "url": "${RETIFORM_MCP_URL:-https://api.retiform.ai/mcp}",
+      "headers": {
+        "KG-Session-Label": "${RETIFORM_SESSION_LABEL:-}"
+      }
+    }
+  }
+}

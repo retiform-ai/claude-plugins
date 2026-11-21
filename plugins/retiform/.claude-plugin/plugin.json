@@ -1,0 +1,12 @@
+{
+  "name": "retiform",
+  "version": "0.2.0",
+  "description": "Shared decisions for a repository's coding-agent sessions, kept in the team's Retiform tenant.",
+  "author": {
+    "name": "Retiform LLC",
+    "url": "https://retiform.ai/"
+  },
+  "homepage": "https://retiform.ai/docs/claude-code-plugin/",
+  "license": "Apache-2.0",
+  "privacyPolicyUrl": "https://retiform.ai/privacy/"
+}
