@@ -9,7 +9,7 @@
       "name": "retiform",
       "source": "./plugins/retiform",
       "description": "Shared decisions for a repository's coding-agent sessions, kept in the team's Retiform tenant.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "author": {
         "name": "Retiform LLC",
         "url": "https://retiform.ai/"

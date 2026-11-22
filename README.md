@@ -12,7 +12,11 @@ Retiform tenant, each with its writer, its date and what it rests on, and a corr
 The plugin adds:
 
 - Retiform's MCP server, at `https://api.retiform.ai/mcp`. You sign in and approve it once.
-- A session-start hook that tells the agent which Project the repository is linked to. It makes no network call.
+- A session-start hook that tells the agent which Project the repository is linked to. After a long session's
+  context is compacted, it tells the agent to record a hand-off of the work done and left, and to recall what other
+  sessions decided since the day before. It makes no network call.
+- A pre-compact hook that asks the compaction summary to keep what the session recorded, so the hand-off replaces
+  the session's earlier one. It makes no network call either.
 - Four skills: `retiform:link`, `retiform:import`, `retiform:decisions` and `retiform:shared-decisions`.
 
 ## Install
