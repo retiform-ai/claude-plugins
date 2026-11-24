@@ -1,6 +1,6 @@
 {
   "name": "retiform",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Shared decisions for a repository's coding-agent sessions, kept in the team's Retiform tenant.",
   "author": {
     "name": "Retiform LLC",

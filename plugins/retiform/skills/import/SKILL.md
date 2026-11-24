@@ -40,9 +40,22 @@ never the files themselves:
    was missing. So `.claude/rules/style.mdc` is uploaded as `<project>/_claude/rules/style.mdc.md`. The same file
    gets the same document in every clone, and a file uploaded again becomes a new revision of it. Status 1 and
    `{ error }`: the repository is not linked, or a path is not a candidate to upload. Say so and stop.
-2. Run `kg upload "<folder>"` with the printed folder (`npx @retiform-ai/kg upload ...` without installing it). If
-   it shows a sign-in code, ask the developer to approve it in the browser.
-3. Run `node "${CLAUDE_PLUGIN_ROOT}/hooks/import-files.mjs" --clean "<folder>"`, whatever the upload's outcome.
+2. Run `kg whoami --json` (`npx @retiform-ai/kg whoami --json` without installing it). It prints the stored
+   sign-in's `tenant`, with its `tenantId` and `displayName`, and never starts a sign-in. Then, in this order:
+   1. Status 3: there is no stored sign-in, or it has expired. You run `kg` without a terminal, so it cannot sign
+      in from here. Ask the developer to run `kg login` in their own terminal, then run this check again. If
+      they do not sign in, **stop the import, run the cleanup in item 4 of this list, and record nothing**.
+   2. No `tenant` in the output: the developer belongs to no tenant yet. Say so, **stop the import, run the
+      cleanup in item 4 of this list, and record nothing**.
+   3. Otherwise name the tenant to the developer and ask them to confirm that the files go there. `kg upload`
+      cannot ask them itself when you run it. If they do not confirm, **stop the import, run the cleanup in item 4
+      of this list, and record nothing**.
+3. Only after the developer confirmed the tenant, run `kg upload "<folder>" --tenant <tenantId>` with the printed
+   folder and that `tenantId` (`npx @retiform-ai/kg upload ...` without installing it). The option is required
+   here: without a terminal `kg upload` cannot ask before it sends, and stops with status 2 unless the tenant is
+   named. With it, the files are sent only if the sign-in belongs to that tenant.
+4. Run `node "${CLAUDE_PLUGIN_ROOT}/hooks/import-files.mjs" --clean "<folder>"`, whatever the upload's outcome,
+   and also when item 2 of this list stopped the import. Never leave the staged folder behind.
 
 Read the upload's outcome for each file, matching it to its repository `path` by `externalId`:
 
@@ -51,7 +64,7 @@ Read the upload's outcome for each file, matching it to its repository `path` by
   nothing.
 - A file it reports as skipped, failed or needing confirmation is not uploaded. Name it with the command's reason
   and leave it out of the proposals; do not re-send it with `--confirm` unless the developer asks.
-- Only the files it reports as sent go on to step 3.
+- Only the files it reports as sent go on to section 3.
 
 ## 3. Propose decisions
 
