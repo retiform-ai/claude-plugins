@@ -1,5 +1,5 @@
 {
-  "description": "Adds the shared-decisions instruction to each session of a linked repository (034 research R1), and asks a compaction's summary to keep what the session recorded (#1131).",
+  "description": "Adds the shared-decisions instruction to each session of a linked repository (034 research R1), asks a compaction's summary to keep what the session recorded, and reminds each prompt to ask for context before acting (#1131).",
   "hooks": {
     "SessionStart": [
       {
@@ -20,6 +20,18 @@
             "type": "command",
             "command": "node",
             "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/pre-compact.mjs"],
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/prompt-reminder.mjs"],
             "timeout": 3
           }
         ]

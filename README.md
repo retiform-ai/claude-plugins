@@ -17,6 +17,9 @@ The plugin adds:
   sessions decided since the day before. It makes no network call.
 - A pre-compact hook that asks the compaction summary to keep what the session recorded, so the hand-off replaces
   the session's earlier one. It makes no network call either.
+- A prompt hook that adds one sentence beside each request, asking the agent to look up what the team already
+  settled before it acts on such a question. It is not added beside a background task's notification, and it makes
+  no network call.
 - Four skills: `retiform:link`, `retiform:import`, `retiform:decisions` and `retiform:shared-decisions`.
 
 ## Install
