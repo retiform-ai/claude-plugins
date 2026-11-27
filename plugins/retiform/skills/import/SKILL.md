@@ -80,7 +80,7 @@ out what `shared-decisions` says is not a decision, and also:
   not proposed as decisions of their own. Propose a consequence separately only when the record presents it as a
   choice of its own, with its own alternatives.
 
-T023's measured run proposed both kinds as decisions until this list was added.
+Earlier evaluation proposed both kinds as decisions until this list was added.
 
 ## 4. Find each decision's passage
 

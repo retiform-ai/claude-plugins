@@ -1,4 +1,4 @@
-// The pre-compact hook (#1131, contracts/plugin-surface.md *Before a compaction*).
+// Before compaction, ask the summary to retain the identifiers needed to continue the session's recorded work.
 //
 // Claude Code uses a PreCompact hook's stdout as instructions for the compaction summary, which is written without
 // tools, so the hook cannot record anything itself. In a linked repository it asks the summary to keep what the
