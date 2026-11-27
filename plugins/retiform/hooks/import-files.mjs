@@ -1,20 +1,20 @@
-// The import's candidate list (034 research R5, step 1; FR-011, FR-015). Run inside the developer's session by the
-// import skill as `node "${CLAUDE_PLUGIN_ROOT}/hooks/import-files.mjs"`, it prints one JSON list: the repository's
+// Build the import's candidate list inside the developer's session. Run by the import skill as
+// `node "${CLAUDE_PLUGIN_ROOT}/hooks/import-files.mjs"`, it prints one JSON list: the repository's
 // instruction files and decision records the skill may propose to upload, and each candidate it skipped with the
 // reason. It uploads nothing and reads no file's content into its output.
 //
 // `--stage <path>...` copies the confirmed candidates into a new folder for `kg upload <folder>` (step 2), and
-// `--clean <folder>` removes that folder afterwards. 027's upload rules skip a path with a segment starting with
+// `--clean <folder>` removes that folder afterwards. Upload skips a path with a segment starting with
 // `.` and any extension but Markdown's, and name a file chosen on its own by its path from the current folder, so the copies are
 // renamed by uploadName and sit under a folder named after the linked Project: each one's external identifier is
 // `<project>/<uploadName(path)>`, the same in every clone and unique in the tenant.
 //
-// The documented lists, settled here (R5's open question):
+// The candidate lists:
 //
 // - Instruction files: INSTRUCTION_FILES at the repository root (or the given path below it), and the Markdown files
 //   directly in INSTRUCTION_FOLDERS.
 // - Decision records: the Markdown files directly in DECISION_FOLDERS, less indexes and templates (NOT_RECORDS).
-// - Skipped as secret-bearing (FR-015): a candidate whose name matches SECRET_NAMES, or whose text matches one of
+// - Skipped as secret-bearing: a candidate whose name matches SECRET_NAMES, or whose text matches one of
 //   SECRET_PATTERNS. Either way it is reported by its path and the pattern's name, never its content.
 //
 // Only the repository is read: its root is the nearest directory at or above the working directory holding `.git`,
